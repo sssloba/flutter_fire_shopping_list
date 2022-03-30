@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_fire_shopping_list/models/shopping_item_model.dart';
+import 'package:flutter_fire_shopping_list/screens/item_edit_dialog.dart';
 import 'package:flutter_fire_shopping_list/widgets/shopping_item.dart';
 
 class ShoppingListPage extends StatefulWidget {
@@ -58,33 +59,34 @@ class _ShoppingListPageState extends State<ShoppingListPage> {
               },
             ),
           ),
+          const SizedBox(height: 75.0)
         ],
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton.extended(
-        label: const Text('Add New Shopping Item'),
-        icon: const Icon(Icons.add),
-        onPressed: () {
-          setState(() {
-            _itemList.add(_getMockedShoppingItem());
-          });
-        },
-      ),
+          label: const Text('Add New Shopping Item'),
+          icon: const Icon(Icons.add),
+          onPressed: () {
+            showDialog(
+                context: context,
+                builder: (context) {
+                  return const ItemEditDialog();
+                }).then((value) {
+              setState(() {
+                _itemList.add(_getMockedShoppingItem(value));
+              });
+            });
+          }),
     );
   }
 
-  ShoppingItem _getMockedShoppingItem() {
-    ShoppingItemModel _shoppingItem = ShoppingItemModel(
-      itemDescription: 'Mocked Item',
-      //quantity: 8000.88,
-    );
-
+  ShoppingItem _getMockedShoppingItem(ShoppingItemModel shoppingItem) {
     return ShoppingItem(
-      itemModel: _shoppingItem,
+      itemModel: shoppingItem,
       onDelete: () {
         setState(() {
           _itemList.removeWhere(
-              (element) => element.itemModel.id == _shoppingItem.id);
+              (element) => element.itemModel.id == shoppingItem.id);
         });
       },
     );
