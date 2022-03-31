@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_fire_shopping_list/models/shopping_item_model.dart';
 import 'package:flutter_fire_shopping_list/screens/item_edit_dialog.dart';
+import 'package:flutter_fire_shopping_list/widgets/confirm_dialog.dart';
 import 'package:flutter_fire_shopping_list/widgets/shopping_item.dart';
 
 class ShoppingListPage extends StatefulWidget {
@@ -84,9 +85,19 @@ class _ShoppingListPageState extends State<ShoppingListPage> {
     return ShoppingItem(
       itemModel: shoppingItem,
       onDelete: () {
-        setState(() {
-          _itemList.removeWhere(
-              (element) => element.itemModel.id == shoppingItem.id);
+        showDialog(
+            context: context,
+            builder: (context) {
+              return ConfirmDialog(
+                title: 'Delete ${shoppingItem.itemDescription}?',
+              );
+            }).then((value) {
+          if (value) {
+            setState(() {
+              _itemList.removeWhere(
+                  (element) => element.itemModel.id == shoppingItem.id);
+            });
+          }
         });
       },
     );

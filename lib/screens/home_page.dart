@@ -18,9 +18,14 @@ class HomePage extends StatelessWidget {
           child: Column(
             children: <Widget>[
               StadimButton(
-                  title: 'Create New List',
-                  onPressed: () => Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => const ShoppingListPage()))),
+                title: 'Create New List',
+                onPressed: () => Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => const ShoppingListPage(),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 16.0),
               StadimButton(title: 'See Existing Lists', onPressed: () {}),
             ],
           ),

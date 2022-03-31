@@ -16,7 +16,7 @@ class _ItemEditDialogState extends State<ItemEditDialog> {
   void initState() {
     super.initState();
     descriptionTextController = TextEditingController();
-    quantityTextController = TextEditingController();
+    quantityTextController = TextEditingController()..text = '1';
   }
 
   @override
@@ -39,6 +39,7 @@ class _ItemEditDialogState extends State<ItemEditDialog> {
           const Text('Item Description:'),
           TextField(
             controller: descriptionTextController,
+            autofocus: true,
             enableSuggestions: true,
             decoration: const InputDecoration(
                 isDense: true, contentPadding: EdgeInsets.only(bottom: 6.0)),

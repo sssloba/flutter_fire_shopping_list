@@ -14,8 +14,9 @@ class MyApp extends StatelessWidget {
       title: 'Shopping List',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.deepPurple,
-      ),
+          primarySwatch: Colors.deepPurple,
+          snackBarTheme:
+              const SnackBarThemeData(backgroundColor: Colors.deepPurple)),
       home: const HomePage(),
     );
   }
