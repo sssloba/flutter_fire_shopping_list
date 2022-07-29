@@ -10,9 +10,9 @@ class Order {
   });
 
   DateTime get createTime => DateTime.now();
-  String get id => '$creatorsEmail${createTime.toIso8601String()}';
+  String get id => '${createTime.toIso8601String()}$creatorsEmail';
 
-  Map<String, dynamic> toJson(Order order) {
+  Map<String, dynamic> toJson() {
     return {
       'creatorsEmail': creatorsEmail,
       'title': title,
@@ -28,4 +28,9 @@ class Order {
         title: json['title'],
         shareWith: json['shareWith']);
   }
+
+  Order.mocked()
+      : creatorsEmail = 'test@mail',
+        title = 'Test Order',
+        shareWith = ['shareUserTest'];
 }

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_fire_shopping_list/models/order.dart';
 import 'package:flutter_fire_shopping_list/screens/shopping_list_page.dart';
+import 'package:flutter_fire_shopping_list/services/firestore_manager.dart';
 import 'package:flutter_fire_shopping_list/widgets/stadium_button.dart';
 
 class HomePage extends StatelessWidget {
@@ -26,7 +28,11 @@ class HomePage extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 16.0),
-              StadimButton(title: 'See Existing Lists', onPressed: () {}),
+              StadimButton(
+                  title: 'See Existing Lists',
+                  onPressed: () async {
+                    FirestoreManager().addNewOrder(Order.mocked());
+                  }),
             ],
           ),
         ),
