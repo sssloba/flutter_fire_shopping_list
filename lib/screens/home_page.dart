@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_fire_shopping_list/models/order.dart';
+import 'package:flutter_fire_shopping_list/screens/orders_page.dart';
 import 'package:flutter_fire_shopping_list/screens/shopping_list_page.dart';
 import 'package:flutter_fire_shopping_list/services/firestore_manager.dart';
 import 'package:flutter_fire_shopping_list/widgets/stadium_button.dart';
@@ -21,17 +22,24 @@ class HomePage extends StatelessWidget {
             children: <Widget>[
               StadimButton(
                 title: 'Create New List',
-                onPressed: () => Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => const ShoppingListPage(),
-                  ),
-                ),
+                onPressed: () {
+                  FirestoreManager().addNewOrder(Order.mocked());
+                  return Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => const ShoppingListPage(),
+                    ),
+                  );
+                },
               ),
               const SizedBox(height: 16.0),
               StadimButton(
                   title: 'See Existing Lists',
-                  onPressed: () async {
-                    FirestoreManager().addNewOrder(Order.mocked());
+                  onPressed: () {
+                    return Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => const OrdersPage(),
+                      ),
+                    );
                   }),
             ],
           ),
