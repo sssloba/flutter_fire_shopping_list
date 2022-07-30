@@ -1,3 +1,5 @@
+import 'package:flutter_fire_shopping_list/consts/keys.dart';
+
 class Order {
   final String creatorsEmail;
   final String title;
@@ -14,19 +16,19 @@ class Order {
 
   Map<String, dynamic> toJson() {
     return {
-      'creatorsEmail': creatorsEmail,
-      'title': title,
-      'shareWith': shareWith,
-      'createTime': createTime,
-      'id': id,
+      creatorsEmailKey: creatorsEmail,
+      titleKey: title,
+      shareWithKey: shareWith,
+      createTimeKey: createTime,
+      idKey: id,
     };
   }
 
   factory Order.fromJson(Map<String, dynamic> json) {
     return Order(
-        creatorsEmail: json['creatorsEmail'],
-        title: json['title'],
-        shareWith: json['shareWith']);
+        creatorsEmail: json[creatorsEmailKey],
+        title: json[titleKey],
+        shareWith: json[shareWithKey]);
   }
 
   Order.mocked()

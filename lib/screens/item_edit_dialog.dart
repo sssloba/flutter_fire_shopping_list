@@ -76,6 +76,7 @@ class _ItemEditDialogState extends State<ItemEditDialog> {
               Navigator.pop(
                   context,
                   ShoppingItemModel(
+                      orderId: 'test', //TODO pass orderId from created order
                       itemDescription: descriptionTextController.text,
                       quantity: quantity));
             }
