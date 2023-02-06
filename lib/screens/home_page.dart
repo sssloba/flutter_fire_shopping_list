@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_fire_shopping_list/models/order.dart';
-import 'package:flutter_fire_shopping_list/screens/login_page.dart';
 import 'package:flutter_fire_shopping_list/screens/orders_page.dart';
 import 'package:flutter_fire_shopping_list/screens/shopping_list_page.dart';
 import 'package:flutter_fire_shopping_list/services/auth_service.dart';
