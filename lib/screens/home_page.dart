@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_fire_shopping_list/models/order.dart';
+import 'package:flutter_fire_shopping_list/screens/login_page.dart';
 import 'package:flutter_fire_shopping_list/screens/orders_page.dart';
 import 'package:flutter_fire_shopping_list/screens/shopping_list_page.dart';
+import 'package:flutter_fire_shopping_list/services/auth_service.dart';
 import 'package:flutter_fire_shopping_list/services/firestore_manager.dart';
 import 'package:flutter_fire_shopping_list/widgets/stadium_button.dart';
 
@@ -14,6 +16,24 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Shopping List'),
         centerTitle: true,
+      ),
+      endDrawer: Drawer(
+        child: ListView(
+          children: [
+            ListTile(
+              onTap: () async {
+                await AuthService().signOut();
+                Navigator.popUntil(
+                    context, (Route<dynamic> route) => route.isFirst);
+              },
+              title: const Text(
+                'LOGOUT',
+                style: TextStyle(color: Colors.red),
+                selectionColor: Colors.red,
+              ),
+            )
+          ],
+        ),
       ),
       body: Center(
         child: Padding(
